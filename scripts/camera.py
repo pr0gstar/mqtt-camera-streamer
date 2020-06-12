@@ -14,7 +14,7 @@ from imutils import opencv2matplotlib
 from PIL import Image
 
 # CONFIG_FILE_PATH = os.getenv("MQTT_CAMERA_CONFIG", "./config/config.yml")
-CONFIG_FILE_PATH = "/home/pi/mqtt-camera-streamer/config/config.yml"
+CONFIG_FILE_PATH = os.getenv("MQTT_CAMERA_CONFIG", "/home/pi/mqtt-camera-streamer/config/config.yml")
 CONFIG = get_config(CONFIG_FILE_PATH)
 
 MQTT_BROKER = CONFIG["mqtt"]["broker"]
