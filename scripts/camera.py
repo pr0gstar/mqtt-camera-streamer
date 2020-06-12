@@ -55,7 +55,7 @@ def main():
         client.publish(MQTT_TOPIC_CAMERA, byte_array, qos=MQTT_QOS)
         now = get_now_string()
         print(f"published frame on topic: {MQTT_TOPIC_CAMERA} at {now}")
-        time.sleep(1 / FPS)
+        # time.sleep(1 / FPS)
 
 
 if __name__ == "__main__":
