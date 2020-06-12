@@ -2,10 +2,12 @@ mqtt:
   broker: localhost
   port: 1883
   QOS: 1
+  username: ''
+  password: ''
 
 camera:
   vide_source: 0
-  fps: 2  
+  fps: 10  
   mqtt_topic: homie/mac_webcam/capture
 
 processing:

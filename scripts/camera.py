@@ -17,6 +17,8 @@ CONFIG = get_config(CONFIG_FILE_PATH)
 MQTT_BROKER = CONFIG["mqtt"]["broker"]
 MQTT_PORT = CONFIG["mqtt"]["port"]
 MQTT_QOS = CONFIG["mqtt"]["QOS"]
+MQTT_USER = CONFIG["mqtt"]["username"]
+MQTT_PWD = CONFIG["mqtt"]["password"]
 
 MQTT_TOPIC_CAMERA = CONFIG["camera"]["mqtt_topic"]
 VIDEO_SOURCE = CONFIG["camera"]["vide_source"]
@@ -25,6 +27,8 @@ FPS = CONFIG["camera"]["fps"]
 
 def main():
     client = get_mqtt_client()
+    if MQTT_USER != "" and MQTT_PWD != "":
+        client.username_pw_set(MQTT_USER, MQTT_PWD)
     client.connect(MQTT_BROKER, port=MQTT_PORT)
     time.sleep(4)  # Wait for connection setup to complete
     client.loop_start()
