@@ -40,26 +40,16 @@ def main():
     time.sleep(2)  # Webcam light should come on if using one
 
     while True:
-        ret, frame = camera.read()
+        frame = camera.read()
 
-        if ret == True:
-            font = cv2.FONT_HERSHEY_SIMPLEX
-            text = 'Width: ' + str(camera.get(3)) + ' Height:' + str(cap.get(4))
-            datet = str(datetime.datetime.now())
-            frame = cv2.putText(frame, text, (10, 50), font, 1,
-                                (0, 255, 255), 2, cv2.LINE_AA)
-            frame = cv2.putText(frame, datet, (10, 100), font, 1,
-                                (0, 255, 255), 2, cv2.LINE_AA)
-            cv2.imshow('frame', frame)
-
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
-            else:
-                break
+        font = cv2.FONT_HERSHEY_SIMPLEX
+        datet = str(datetime.datetime.now())
+        frame = cv2.putText(frame, datet, (10, 100), font, 1,(0, 255, 255), 2, cv2.LINE_AA)
+        cv2.imshow('frame', frame)
 
         np_array_RGB = opencv2matplotlib(frame)  # Convert to RGB
 
-        image = Image.fromarray(np_array_RGB)  #  PIL image
+        image = Image.fromarray(np_array_RGB)  #  PIL image
         byte_array = pil_image_to_byte_array(image)
         client.publish(MQTT_TOPIC_CAMERA, byte_array, qos=MQTT_QOS)
         now = get_now_string()
