@@ -1,6 +1,3 @@
-"""
-Some boilerplate code to handle MQTT.
-"""
 import paho.mqtt.client as mqtt
 
 # Reqired callbacks
