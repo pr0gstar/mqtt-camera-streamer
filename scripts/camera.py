@@ -38,15 +38,10 @@ def main():
 
     # Open camera
     camera = WebcamVideoStream(src=VIDEO_SOURCE).start()
-    time.sleep(2)  # Webcam light should come on if using one
+    # time.sleep(2)  # Webcam light should come on if using one
 
     while True:
         frame = camera.read()
-
-        font = cv2.FONT_HERSHEY_SIMPLEX
-        datet = str(datetime.datetime.now())
-        frame = cv2.putText(frame, datet, (10, 100), font, 1,(0, 255, 255), 2, cv2.LINE_AA)
-        cv2.imshow('frame', frame)
 
         np_array_RGB = opencv2matplotlib(frame)  # Convert to RGB
 
