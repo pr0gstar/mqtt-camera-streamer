@@ -44,8 +44,8 @@ def main():
         frame = camera.read()
 
         font = cv2.FONT_HERSHEY_SIMPLEX
-        datet = str(datetime.datetime.now())
-        frame = cv2.putText(frame, datet, (10, 100), font, 1,(0, 255, 255), 2, cv2.LINE_AA)
+        datet = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
+        frame = cv2.putText(frame, datet, (10, 10), font, 1,(63, 136, 1143), 2, cv2.LINE_AA)
         # cv2.imshow('frame', frame)
 
         np_array_RGB = opencv2matplotlib(frame)  # Convert to RGB
