@@ -3,6 +3,8 @@ Capture frames from a camera using openCV and publish on an MQTT topic.
 """
 import time
 import os
+import cv2
+import datetime
 
 from mqtt import get_mqtt_client
 from helpers import pil_image_to_byte_array, get_now_string, get_config
@@ -38,7 +40,23 @@ def main():
     time.sleep(2)  # Webcam light should come on if using one
 
     while True:
-        frame = camera.read()
+        ret, frame = camera.read()
+
+        if ret == True:
+            font = cv2.FONT_HERSHEY_SIMPLEX
+            text = 'Width: ' + str(camera.get(3)) + ' Height:' + str(cap.get(4))
+            datet = str(datetime.datetime.now())
+            frame = cv2.putText(frame, text, (10, 50), font, 1,
+                                (0, 255, 255), 2, cv2.LINE_AA)
+            frame = cv2.putText(frame, datet, (10, 100), font, 1,
+                                (0, 255, 255), 2, cv2.LINE_AA)
+            cv2.imshow('frame', frame)
+
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+            else:
+                break
+
         np_array_RGB = opencv2matplotlib(frame)  # Convert to RGB
 
         image = Image.fromarray(np_array_RGB)  #  PIL image
