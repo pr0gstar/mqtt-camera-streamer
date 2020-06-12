@@ -44,7 +44,7 @@ def main():
         frame = camera.read()
 
         font = cv2.FONT_HERSHEY_SIMPLEX
-        datet = datetime.datetime.now().strftime("%m/%d/%Y, %H:%M:%S")
+        datet = datetime.datetime.now().strftime("%d.%m.%Y, %H:%M:%S")
         frame = cv2.putText(frame, datet, (10, 10), font, 0.5,(63, 136, 1143), 2, cv2.LINE_AA)
         # cv2.imshow('frame', frame)
 
