@@ -31,7 +31,7 @@ FPS = CONFIG["camera"]["fps"]
 def main():
     client = get_mqtt_client()
     # if MQTT_USER != "" and MQTT_PWD != "":
-        client.username_pw_set(MQTT_USER, MQTT_PWD)
+    client.username_pw_set(MQTT_USER, MQTT_PWD)
     client.connect(MQTT_BROKER, port=MQTT_PORT)
     time.sleep(4)  # Wait for connection setup to complete
     client.loop_start()
